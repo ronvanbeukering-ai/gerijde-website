@@ -270,7 +270,9 @@ if (orderSummaryEl) {
 
   const orderForm = document.getElementById('orderForm');
   const formError = document.getElementById('formError');
-  const submitEmailBtn = document.getElementById('submitEmail');
+  const submitPaymentBtn = document.getElementById('submitPayment');
+  const submitPaymentLabel = document.getElementById('submitPaymentLabel');
+  const paymentError = document.getElementById('paymentError');
   const submitWhatsappBtn = document.getElementById('submitWhatsapp');
 
   function buildCustomerLines() {
@@ -299,27 +301,44 @@ if (orderSummaryEl) {
     return valid;
   }
 
-  function submitEmail() {
+  async function submitPayment() {
     if (!validateOrder()) return;
-    const lines = buildOrderLines();
-    const body = [
-      'Hallo Gridje,',
-      '',
-      'Ik wil graag de volgende producten bestellen:',
-      '',
-      ...lines,
-      '',
-      `Totaal: ${fmt(cartTotal())}`,
-      '(gratis verzending)',
-      '',
-      'Mijn gegevens:',
-      ...buildCustomerLines(),
-      '',
-      'Groet,'
-    ].join('\n');
+    paymentError.hidden = true;
+    submitPaymentBtn.disabled = true;
+    submitPaymentLabel.textContent = 'Bezig...';
 
-    const subject = 'Bestelling zandschilderpakket(ten)';
-    window.location.href = `mailto:gridje@gridje.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const customer = {
+      naam: document.getElementById('ofNaam').value.trim(),
+      email: document.getElementById('ofEmail').value.trim(),
+      telefoon: document.getElementById('ofTelefoon').value.trim(),
+      adres: document.getElementById('ofAdres').value.trim(),
+      postcode: document.getElementById('ofPostcode').value.trim(),
+      plaats: document.getElementById('ofPlaats').value.trim(),
+      opmerking: document.getElementById('ofOpmerking').value.trim(),
+    };
+
+    try {
+      const res = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: cart, customer }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.checkoutUrl) {
+        throw new Error(data.error || 'Kon geen betaling starten.');
+      }
+
+      // Cart is cleared on the way to Mollie; if the customer cancels and
+      // comes back, they simply start a fresh order.
+      localStorage.removeItem('gridje-cart');
+      window.location.href = data.checkoutUrl;
+    } catch (err) {
+      paymentError.textContent = err.message || 'Er ging iets mis bij het starten van de betaling. Probeer het opnieuw of neem contact op via WhatsApp.';
+      paymentError.hidden = false;
+      submitPaymentBtn.disabled = false;
+      submitPaymentLabel.textContent = 'Betaal met iDEAL';
+    }
   }
 
   function submitWhatsapp() {
@@ -342,7 +361,7 @@ if (orderSummaryEl) {
 
   orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    submitEmail();
+    submitPayment();
   });
   submitWhatsappBtn.addEventListener('click', submitWhatsapp);
 }
