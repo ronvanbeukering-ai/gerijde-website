@@ -2,6 +2,68 @@
 // status changes. We never trust the webhook body itself (Mollie only sends
 // an id); we always re-fetch the payment from Mollie's API to confirm the
 // real status before treating an order as paid.
+const { sendMail, FROM_ADDRESS } = require('./_mail');
+
+function euro(value) {
+  return `€ ${Number(value).toFixed(2).replace('.', ',')}`;
+}
+
+async function notifyOrder(payment) {
+  const meta = payment.metadata || {};
+  const lines = Array.isArray(meta.lines) ? meta.lines : [];
+  const customer = meta.customer || {};
+  const total = meta.total ? euro(meta.total) : '';
+
+  const orderBlock = [
+    ...lines.map((l) => `- ${l}`),
+    '',
+    `Totaal: ${total}`,
+  ].join('\n');
+
+  // Notification to the shop owner — this is the primary "new order" alert.
+  await sendMail({
+    to: FROM_ADDRESS,
+    subject: `Nieuwe betaalde bestelling — ${total}`,
+    text: [
+      'Er is een nieuwe, betaalde bestelling binnengekomen:',
+      '',
+      orderBlock,
+      '',
+      'Klantgegevens:',
+      `Naam: ${customer.naam || '-'}`,
+      `E-mail: ${customer.email || '-'}`,
+      `Telefoon: ${customer.telefoon || '-'}`,
+      `Adres: ${customer.adres || '-'}, ${customer.postcode || ''} ${customer.plaats || ''}`,
+      customer.opmerking ? `Opmerking: ${customer.opmerking}` : '',
+      '',
+      `Mollie payment ID: ${payment.id}`,
+    ].filter(Boolean).join('\n'),
+  });
+
+  // Confirmation to the customer.
+  if (customer.email) {
+    await sendMail({
+      to: customer.email,
+      subject: 'Bevestiging van je bestelling — Gridje Design',
+      text: [
+        `Hallo ${customer.naam || ''},`.trim(),
+        '',
+        'Bedankt voor je bestelling! We hebben je betaling ontvangen en gaan voor je aan de slag.',
+        '',
+        orderBlock,
+        '',
+        'Bezorgadres:',
+        `${customer.adres || ''}, ${customer.postcode || ''} ${customer.plaats || ''}`,
+        '',
+        'Vragen? Mail gerust terug naar dit adres, of app ons: https://wa.me/31636105802',
+        '',
+        'Groet,',
+        'Gridje Design',
+      ].join('\n'),
+    });
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).end();
@@ -27,10 +89,9 @@ module.exports = async (req, res) => {
     if (payment.status === 'paid') {
       // Order is confirmed paid. Full order details (products, customer
       // name/address/email/phone) are in payment.metadata, and every paid
-      // order is visible in the Mollie Dashboard under Payments — that is
-      // the order overview for now. (An email/Slack notification on top of
-      // this can be added later if wanted.)
-      console.log('Betaalde bestelling:', JSON.stringify(payment.metadata));
+      // order stays visible in the Mollie Dashboard under Payments as the
+      // permanent record either way.
+      await notifyOrder(payment);
     }
 
     res.status(200).end();
