@@ -17,6 +17,7 @@ const PRODUCTS = [
     price: 14.95,
     icon: '🎨',
     img: 'images/producten/product-basispot-klein.jpg',
+    img2: 'images/producten/product-basispot-klein-2.jpg',
     color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
     accent: '#FF5A5F',
     desc: 'Dezelfde inhoud als de basispot, in een kleiner potje. Uit beperkte voorraad — op is op.'
