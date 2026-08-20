@@ -109,39 +109,16 @@ const PRODUCTS = [
 
 const ETSY_SHOP = 'https://www.etsy.com/shop/GridjeMacro';
 
-const INSECTS = [
-  { num: '01', name: 'Citroenvlinder', latin: 'Gonepteryx rhamni', text: 'Rustend op een roze anjer, elke schub scherp vastgelegd.', img: 'images/insecten/insect-03.jpg', url: 'https://www.etsy.com/listing/4557224307/brimstone-butterfly-macro-photography' },
-  { num: '02', name: 'Bruinrode heidelibel', latin: 'Sympetrum striolatum', text: 'Doorschijnende vleugels op een takje, in extreem detail.', img: 'images/insecten/insect-02.jpg', url: 'https://www.etsy.com/listing/4557030929/darter-dragonfly-macro-photography-print' },
-  { num: '03', name: 'Distelvlinder', latin: 'Vanessa cardui', text: 'Voedend op vlinderstruikbloesem, kleurrijk en scherp.', img: 'images/insecten/insect-01.jpg', url: 'https://www.etsy.com/listing/4556783657/nymphalidae-on-buddleja' },
-  { num: '04', name: 'Geel bandspanner-mot', latin: 'Camptogramma bilineata', text: 'Golvende vleugeltekening, rustend op een blad.', img: 'images/insecten/insect-04.jpg', url: 'https://www.etsy.com/listing/4557245771/yellow-shell-moth-macro-photography' },
-  { num: '05', name: 'Roofvlieg', latin: 'Dioctria linearis', text: 'Een roofzuchtige jager, haarscherp op een blad vastgelegd.', img: 'images/insecten/insect-05.jpg', url: 'https://www.etsy.com/listing/4557496358/robber-fly-macro-print-digital-download' },
-  { num: '06', name: 'Gestippelde sabelsprinkhaan (nimf)', latin: 'Leptophyes punctatissima', text: 'Doorschijnend groen lijfje op een felle oranje bloem.', img: 'images/insecten/insect-06.jpg', url: 'https://www.etsy.com/listing/4557499998/speckled-bush-cricket-nymph-macro-print' },
-  { num: '07', name: 'Oranje zandoogje', latin: 'Pyronia tithonus', text: 'Rustend op een blad, met een lieveheersbeestje op de achtergrond.', img: 'images/insecten/insect-07.jpg', url: 'https://www.etsy.com/listing/4557501948/gatekeeper-butterfly-macro-print-digital' },
-  { num: '08', name: 'Rhododendroncicade', latin: 'Graphocephala fennahi', text: 'Felle turquoise-met-rode kleuren, moeilijk met het blote oog te zien.', img: 'images/insecten/insect-08.jpg', url: 'https://www.etsy.com/listing/4557488131/rhododendron-leafhopper-macro-print' },
-  { num: '09', name: 'Sluipvlieg', latin: 'Phasia hemiptera', text: 'Geaderde vleugels, tegenlicht op een duin-strobloem.', img: 'images/insecten/insect-09.jpg', url: 'https://www.etsy.com/listing/4557508384/achinid-fly-macro-print-digital-download' },
-  { num: '10', name: 'Sluipvlieg (bovenaanzicht)', latin: 'Phasia hemiptera', text: 'Symmetrische compositie op een duin-strobloem.', img: 'images/insecten/insect-10.jpg', url: 'https://www.etsy.com/listing/4557492275/tachinid-fly-on-flower-macro-print' }
-];
-
 const fmt = (n) => '€ ' + n.toFixed(2).replace('.', ',');
 
-/* ---------- Render products (webshop.html only) ---------- */
+// Product cards (webshop.html) and insect cards (insecten.html) are rendered
+// statically in the HTML itself — not injected here — so the content is
+// visible to crawlers that don't execute JavaScript (search + AI answer
+// engines). Keep the markup in those files in sync with the PRODUCTS array
+// above when products change. This block only wires up the interactive
+// click-to-swap photo behaviour on top of that static markup.
 const productGrid = document.getElementById('productGrid');
 if (productGrid) {
-  productGrid.innerHTML = PRODUCTS.map(p => `
-    <article class="product-card" style="--accent:${p.accent}">
-      <div class="product-photo${p.img2 ? ' has-alt-photo' : ''}">
-        <img src="${p.img}" data-img="${p.img}" data-img2="${p.img2 || ''}" alt="${p.name}" loading="lazy">
-        ${p.img2 ? '<span class="product-photo-hint">📷 nog een foto</span>' : ''}
-      </div>
-      <h3>${p.name}</h3>
-      <p class="product-desc">${p.desc}</p>
-      <div class="product-footer">
-        <span class="product-price">${fmt(p.price)}</span>
-        <button class="add-btn" data-id="${p.id}">In winkelwagen</button>
-      </div>
-    </article>
-  `).join('') + `<p class="shipping-note" style="grid-column:1/-1;">Alle producten: gratis verzending.</p>`;
-
   productGrid.addEventListener('click', (e) => {
     const img = e.target.closest('.has-alt-photo img');
     if (!img) return;
@@ -149,25 +126,6 @@ if (productGrid) {
     const alt = current === img.dataset.img ? img.dataset.img2 : img.dataset.img;
     img.setAttribute('src', alt);
   });
-}
-
-/* ---------- Render insects (insecten.html only) ---------- */
-const insectGrid = document.getElementById('insectGrid');
-if (insectGrid) {
-  insectGrid.innerHTML = INSECTS.map(i => `
-    <article class="insect-card">
-      <a href="${i.url}" target="_blank" rel="noopener" class="insect-photo-link">
-        <img src="${i.img}" alt="${i.name} (${i.latin}) macrofoto" loading="lazy" class="insect-photo">
-      </a>
-      <div class="insect-body">
-        <span class="insect-num">${i.num}</span>
-        <h3>${i.name}</h3>
-        <p class="insect-latin">${i.latin}</p>
-        <p>${i.text}</p>
-        <a href="${i.url}" target="_blank" rel="noopener" class="insect-buy-link">Bekijk als print →</a>
-      </div>
-    </article>
-  `).join('');
 }
 
 /* ---------- Cart state ---------- */
