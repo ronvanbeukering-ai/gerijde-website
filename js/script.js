@@ -6,6 +6,7 @@ const PRODUCTS = [
     price: 20.25,
     icon: '🎨',
     img: 'images/producten/product-basispot.jpg',
+    img2: 'images/producten/product-basispot-2.jpg',
     color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
     accent: '#FF5A5F',
     desc: '6 kleuren gekleurd zand (50 gram), zandschilderstape, sjabloneerband en -gaas, glitterfiguurtjes, een stukje kant en een gebruiksaanwijzing.'
