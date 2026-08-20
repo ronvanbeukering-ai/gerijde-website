@@ -19,6 +19,14 @@ function euro(n) {
   return n.toFixed(2);
 }
 
+// Basic format check + rejection of header-injection characters (CR/LF) —
+// this value later becomes an email "to" address in api/webhook.js, so it
+// must never be allowed to carry newlines into that header.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function isValidEmail(email) {
+  return typeof email === 'string' && EMAIL_RE.test(email) && !/[\r\n]/.test(email);
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
@@ -39,6 +47,10 @@ module.exports = async (req, res) => {
   }
   if (!customer || !customer.naam || !customer.email || !customer.adres || !customer.postcode || !customer.plaats) {
     res.status(400).json({ error: 'Vul alle verplichte klantgegevens in.' });
+    return;
+  }
+  if (!isValidEmail(customer.email)) {
+    res.status(400).json({ error: 'Vul een geldig e-mailadres in.' });
     return;
   }
 
