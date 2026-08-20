@@ -5,6 +5,7 @@ const PRODUCTS = [
     name: 'Basispot',
     price: 20.25,
     icon: '🎨',
+    img: 'images/producten/product-basispot.jpg',
     color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
     accent: '#FF5A5F',
     desc: '6 kleuren gekleurd zand (50 gram), zandschilderstape, sjabloneerband en -gaas, glitterfiguurtjes, een stukje kant en een gebruiksaanwijzing.'
@@ -14,6 +15,7 @@ const PRODUCTS = [
     name: 'Groot zandschilderpakket',
     price: 32.50,
     icon: '📦',
+    img: 'images/producten/product-groot-pakket.jpg',
     color: 'linear-gradient(135deg,#FFD60A,#FFB400)',
     accent: '#FFB400',
     desc: '16 onderdelen voor heel veel zandschilderplezier: 10 potjes gekleurd zand, 2 potjes glitter, tape, sjabloneerband en -gaas en een stukje kant.'
@@ -23,6 +25,7 @@ const PRODUCTS = [
     name: 'Pakketje gekleurd zand',
     price: 20.50,
     icon: '🏺',
+    img: 'images/producten/product-pakket-zand.jpg',
     color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
     accent: '#00B4D8',
     desc: '8 kleuren zand van eigen fabrikaat — kies uit pastel, fel of aarde. Losse potjes op aanvraag mogelijk, neem dan contact op.'
@@ -32,6 +35,7 @@ const PRODUCTS = [
     name: 'Zandschilderfolie',
     price: 7.95,
     icon: '📄',
+    img: 'images/producten/product-folie.jpg',
     color: 'linear-gradient(135deg,#7B2CBF,#3A86FF)',
     accent: '#7B2CBF',
     desc: '10 stukjes zandschilderfolie plus enkele kaarten om direct mee te beginnen.'
@@ -41,6 +45,7 @@ const PRODUCTS = [
     name: 'Lege potjes',
     price: 9.25,
     icon: '🫙',
+    img: 'images/producten/product-lege-potjes.jpg',
     color: 'linear-gradient(135deg,#C08552,#8B5E3C)',
     accent: '#8B5E3C',
     desc: '10 lege potjes om zuinig met je zand om te gaan — vul alleen wat je nodig hebt.'
@@ -69,7 +74,7 @@ const productGrid = document.getElementById('productGrid');
 if (productGrid) {
   productGrid.innerHTML = PRODUCTS.map(p => `
     <article class="product-card" style="--accent:${p.accent}">
-      <div class="product-icon" style="background:${p.color}">${p.icon}</div>
+      <div class="product-photo"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
       <h3>${p.name}</h3>
       <p class="product-desc">${p.desc}</p>
       <div class="product-footer">
