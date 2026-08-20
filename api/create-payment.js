@@ -4,6 +4,7 @@
 // js/script.js's PRODUCTS array. Keep both in sync when products change.
 const PRODUCTS = {
   'basispot':        { name: 'Basispot',                      price: 20.25 },
+  'basispot-klein':  { name: 'Kleine basispot',                price: 14.95 },
   'groot-pakket':     { name: 'Groot zandschilderpakket',      price: 32.50 },
   'pakket-zand-pastel': { name: 'Pakketje gekleurd zand — Pastel', price: 20.50 },
   'pakket-zand-fel':    { name: 'Pakketje gekleurd zand — Fel',    price: 20.50 },

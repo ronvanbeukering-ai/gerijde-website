@@ -12,6 +12,16 @@ const PRODUCTS = [
     desc: '6 kleuren gekleurd zand (50 gram), zandschilderstape, sjabloneerband en -gaas, glitterfiguurtjes, een stukje kant en een gebruiksaanwijzing.'
   },
   {
+    id: 'basispot-klein',
+    name: 'Kleine basispot',
+    price: 14.95,
+    icon: '🎨',
+    img: 'images/producten/product-basispot-klein.jpg',
+    color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
+    accent: '#FF5A5F',
+    desc: 'Dezelfde inhoud als de basispot, in een kleiner potje. Uit beperkte voorraad — op is op.'
+  },
+  {
     id: 'groot-pakket',
     name: 'Groot zandschilderpakket',
     price: 32.50,
