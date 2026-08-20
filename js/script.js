@@ -12,15 +12,37 @@ const PRODUCTS = [
     desc: '6 kleuren gekleurd zand (50 gram), zandschilderstape, sjabloneerband en -gaas, glitterfiguurtjes, een stukje kant en een gebruiksaanwijzing.'
   },
   {
-    id: 'basispot-klein',
-    name: 'Kleine basispot',
+    id: 'basispot-klein-pastel',
+    name: 'Kleine basispot — Pastel',
     price: 14.95,
     icon: '🎨',
     img: 'images/producten/product-basispot-klein.jpg',
     img2: 'images/producten/product-basispot-klein-2.jpg',
     color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
     accent: '#FF5A5F',
-    desc: 'Dezelfde inhoud als de basispot, in een kleiner potje. Uit beperkte voorraad — op is op.'
+    desc: 'Dezelfde inhoud als de basispot, in een kleiner potje, met zachte pastelkleuren zand. Uit beperkte voorraad — zolang de voorraad strekt.'
+  },
+  {
+    id: 'basispot-klein-fel',
+    name: 'Kleine basispot — Fel',
+    price: 14.95,
+    icon: '🎨',
+    img: 'images/producten/product-basispot-klein.jpg',
+    img2: 'images/producten/product-basispot-klein-2.jpg',
+    color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
+    accent: '#FF5A5F',
+    desc: 'Dezelfde inhoud als de basispot, in een kleiner potje, met felle kleuren zand. Uit beperkte voorraad — zolang de voorraad strekt.'
+  },
+  {
+    id: 'basispot-klein-aarde',
+    name: 'Kleine basispot — Aarde',
+    price: 14.95,
+    icon: '🎨',
+    img: 'images/producten/product-basispot-klein.jpg',
+    img2: 'images/producten/product-basispot-klein-2.jpg',
+    color: 'linear-gradient(135deg,#FF8A5B,#FF5A5F)',
+    accent: '#FF5A5F',
+    desc: 'Dezelfde inhoud als de basispot, in een kleiner potje, met warme aardetinten zand. Uit beperkte voorraad — zolang de voorraad strekt.'
   },
   {
     id: 'groot-pakket',
