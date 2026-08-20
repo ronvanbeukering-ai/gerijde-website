@@ -16,6 +16,7 @@ const PRODUCTS = [
     price: 32.50,
     icon: '📦',
     img: 'images/producten/product-groot-pakket.jpg',
+    img2: 'images/producten/product-groot-pakket-2.jpg',
     color: 'linear-gradient(135deg,#FFD60A,#FFB400)',
     accent: '#FFB400',
     desc: '16 onderdelen voor heel veel zandschilderplezier: 10 potjes gekleurd zand, 2 potjes glitter, tape, sjabloneerband en -gaas en een stukje kant.'
@@ -94,7 +95,10 @@ const productGrid = document.getElementById('productGrid');
 if (productGrid) {
   productGrid.innerHTML = PRODUCTS.map(p => `
     <article class="product-card" style="--accent:${p.accent}">
-      <div class="product-photo"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="product-photo${p.img2 ? ' has-alt-photo' : ''}">
+        <img src="${p.img}" data-img="${p.img}" data-img2="${p.img2 || ''}" alt="${p.name}" loading="lazy">
+        ${p.img2 ? '<span class="product-photo-hint">📷 nog een foto</span>' : ''}
+      </div>
       <h3>${p.name}</h3>
       <p class="product-desc">${p.desc}</p>
       <div class="product-footer">
@@ -103,6 +107,14 @@ if (productGrid) {
       </div>
     </article>
   `).join('') + `<p class="shipping-note" style="grid-column:1/-1;">Alle producten: gratis verzending.</p>`;
+
+  productGrid.addEventListener('click', (e) => {
+    const img = e.target.closest('.has-alt-photo img');
+    if (!img) return;
+    const current = img.getAttribute('src');
+    const alt = current === img.dataset.img ? img.dataset.img2 : img.dataset.img;
+    img.setAttribute('src', alt);
+  });
 }
 
 /* ---------- Render insects (insecten.html only) ---------- */

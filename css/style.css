@@ -310,9 +310,22 @@ button { font-family: inherit; cursor: pointer; }
 }
 .product-photo {
   display: block;
+  position: relative;
   aspect-ratio: 4/3;
   overflow: hidden;
   margin: -26px -26px 18px -26px;
+}
+.product-photo.has-alt-photo img { cursor: pointer; }
+.product-photo-hint {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(43, 32, 22, 0.72);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  pointer-events: none;
 }
 .product-photo img {
   width: 100%;
