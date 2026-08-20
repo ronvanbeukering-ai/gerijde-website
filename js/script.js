@@ -21,14 +21,34 @@ const PRODUCTS = [
     desc: '16 onderdelen voor heel veel zandschilderplezier: 10 potjes gekleurd zand, 2 potjes glitter, tape, sjabloneerband en -gaas en een stukje kant.'
   },
   {
-    id: 'pakket-zand',
-    name: 'Pakketje gekleurd zand',
+    id: 'pakket-zand-pastel',
+    name: 'Pakketje gekleurd zand — Pastel',
     price: 20.50,
     icon: '🏺',
     img: 'images/producten/product-pakket-zand.jpg',
     color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
     accent: '#00B4D8',
-    desc: '8 kleuren zand van eigen fabrikaat — kies uit pastel, fel of aarde. Losse potjes op aanvraag mogelijk, neem dan contact op.'
+    desc: '8 zachte pastelkleuren zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
+  },
+  {
+    id: 'pakket-zand-fel',
+    name: 'Pakketje gekleurd zand — Fel',
+    price: 20.50,
+    icon: '🏺',
+    img: 'images/producten/product-pakket-zand.jpg',
+    color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
+    accent: '#00B4D8',
+    desc: '8 felle, uitgesproken kleuren zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
+  },
+  {
+    id: 'pakket-zand-aarde',
+    name: 'Pakketje gekleurd zand — Aarde',
+    price: 20.50,
+    icon: '🏺',
+    img: 'images/producten/product-pakket-zand.jpg',
+    color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
+    accent: '#00B4D8',
+    desc: '8 warme aardetinten zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
   },
   {
     id: 'folie',

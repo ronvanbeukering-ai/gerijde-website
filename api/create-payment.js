@@ -5,7 +5,9 @@
 const PRODUCTS = {
   'basispot':        { name: 'Basispot',                      price: 20.25 },
   'groot-pakket':     { name: 'Groot zandschilderpakket',      price: 32.50 },
-  'pakket-zand':      { name: 'Pakketje gekleurd zand',        price: 20.50 },
+  'pakket-zand-pastel': { name: 'Pakketje gekleurd zand — Pastel', price: 20.50 },
+  'pakket-zand-fel':    { name: 'Pakketje gekleurd zand — Fel',    price: 20.50 },
+  'pakket-zand-aarde':  { name: 'Pakketje gekleurd zand — Aarde',  price: 20.50 },
   'folie':            { name: 'Zandschilderfolie',             price: 7.95  },
   'lege-potjes':       { name: 'Lege potjes',                  price: 9.25  },
 };
