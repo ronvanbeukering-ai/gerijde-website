@@ -25,7 +25,7 @@ const PRODUCTS = [
     name: 'Pakketje gekleurd zand — Pastel',
     price: 20.50,
     icon: '🏺',
-    img: 'images/producten/product-pakket-zand.jpg',
+    img: 'images/producten/product-pakket-zand-pastel.jpg',
     color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
     accent: '#00B4D8',
     desc: '8 zachte pastelkleuren zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
@@ -35,7 +35,7 @@ const PRODUCTS = [
     name: 'Pakketje gekleurd zand — Fel',
     price: 20.50,
     icon: '🏺',
-    img: 'images/producten/product-pakket-zand.jpg',
+    img: 'images/producten/product-pakket-zand-fel.jpg',
     color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
     accent: '#00B4D8',
     desc: '8 felle, uitgesproken kleuren zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
@@ -45,7 +45,7 @@ const PRODUCTS = [
     name: 'Pakketje gekleurd zand — Aarde',
     price: 20.50,
     icon: '🏺',
-    img: 'images/producten/product-pakket-zand.jpg',
+    img: 'images/producten/product-pakket-zand-aarde.jpg',
     color: 'linear-gradient(135deg,#06D6A0,#00B4D8)',
     accent: '#00B4D8',
     desc: '8 warme aardetinten zand van eigen fabrikaat. Losse potjes op aanvraag mogelijk, neem dan contact op.'
