@@ -436,5 +436,21 @@ if (lightbox) {
   });
 }
 
+/* ---------- Video facade (laadt YouTube-embed pas na klik) ---------- */
+const videoFacade = document.getElementById('videoFacade');
+if (videoFacade) {
+  videoFacade.addEventListener('click', () => {
+    const videoId = videoFacade.dataset.videoId;
+    const videoTitle = videoFacade.dataset.videoTitle || '';
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    iframe.title = videoTitle;
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    videoFacade.replaceWith(iframe);
+  }, { once: true });
+}
+
 /* ---------- Init ---------- */
 renderCart();
