@@ -1,3 +1,19 @@
+/* ---------- Fonts (self-hosted, variable) ---------- */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('../fonts/fraunces-latin-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/inter-latin-variable.woff2') format('woff2');
+}
+
 /* ---------- Reset & base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -46,6 +62,7 @@ button { font-family: inherit; cursor: pointer; }
 .section { padding: 96px 0; scroll-margin-top: 92px; }
 .hero { scroll-margin-top: 92px; }
 .section-head { max-width: 640px; margin: 0 auto 48px; text-align: center; }
+.section-head--left { max-width: none; text-align: left; }
 .kicker {
   font-size: 13px;
   font-weight: 600;
@@ -287,12 +304,43 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
 }
 
+/* ---------- Kleur-swatches (zandkleuren, sand-stripe) ---------- */
+.swatch-00b4d8 { background: #00B4D8; }
+.swatch-06d6a0 { background: #06D6A0; }
+.swatch-3a86ff { background: #3A86FF; }
+.swatch-5c4033 { background: #5C4033; }
+.swatch-6b4226 { background: #6B4226; }
+.swatch-7b2cbf { background: #7B2CBF; }
+.swatch-7c6a46 { background: #7C6A46; }
+.swatch-8b5e3c { background: #8B5E3C; }
+.swatch-a47148 { background: #A47148; }
+.swatch-a9746e { background: #A9746E; }
+.swatch-c08552 { background: #C08552; }
+.swatch-c9e4de { background: #C9E4DE; }
+.swatch-d2b48c { background: #D2B48C; }
+.swatch-d6e2e9 { background: #D6E2E9; }
+.swatch-d8e2dc { background: #D8E2DC; }
+.swatch-e8dff5 { background: #E8DFF5; }
+.swatch-ef476f { background: #EF476F; }
+.swatch-f2c6de { background: #F2C6DE; }
+.swatch-f7d9c4 { background: #F7D9C4; }
+.swatch-fae3d9 { background: #FAE3D9; }
+.swatch-ff5a5f { background: #FF5A5F; }
+.swatch-ffb400 { background: #FFB400; }
+.swatch-ffd60a { background: #FFD60A; }
+.swatch-fff1c1 { background: #FFF1C1; }
+
 /* ---------- Products ---------- */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
 }
+.accent-ff5a5f { --accent: #FF5A5F; }
+.accent-ffb400 { --accent: #FFB400; }
+.accent-00b4d8 { --accent: #00B4D8; }
+.accent-7b2cbf { --accent: #7B2CBF; }
+.accent-8b5e3c { --accent: #8B5E3C; }
 .product-card {
   background: color-mix(in srgb, var(--accent, var(--terracotta)) 7%, #fff);
   border: 1px solid var(--line);
@@ -362,6 +410,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--ink-soft);
   font-size: 14px;
   margin-top: 32px;
+  grid-column: 1 / -1;
 }
 
 /* ---------- Insects ---------- */
@@ -775,6 +824,11 @@ a.contact-item:hover { border-color: var(--terracotta); }
 
 /* ---------- Sub-page section header ---------- */
 .page-hero { padding-top: 64px; }
+
+/* ---------- Bedankt-pagina ---------- */
+.thanks-hero { text-align: center; }
+.thanks-wrap { max-width: 560px; }
+.thanks-actions { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 a.contact-item-whatsapp:hover { border-color: #25D366; }
 
 /* ---------- Responsive ---------- */
