@@ -303,6 +303,7 @@ button { font-family: inherit; cursor: pointer; }
   flex-direction: column;
   transition: box-shadow .2s ease, transform .2s ease;
   overflow: hidden;
+  scroll-margin-top: 96px;
 }
 .product-card:hover {
   box-shadow: 0 20px 40px -24px rgba(43, 32, 22, 0.3);

@@ -19,6 +19,22 @@ function euro(n) {
   return n.toFixed(2);
 }
 
+// Basic in-memory rate limiting per IP, to stop this endpoint being spammed
+// into creating large numbers of Mollie payments. This resets whenever the
+// serverless function instance recycles — good enough to blunt abuse on a
+// small shop, not a substitute for a shared store under heavier traffic.
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 10;
+const rateLimitHits = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const hits = (rateLimitHits.get(ip) || []).filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+  hits.push(now);
+  rateLimitHits.set(ip, hits);
+  return hits.length > RATE_LIMIT_MAX;
+}
+
 // Basic format check + rejection of header-injection characters (CR/LF) —
 // this value later becomes an email "to" address in api/webhook.js, so it
 // must never be allowed to carry newlines into that header.
@@ -30,6 +46,12 @@ function isValidEmail(email) {
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket?.remoteAddress || 'unknown';
+  if (isRateLimited(ip)) {
+    res.status(429).json({ error: 'Te veel verzoeken. Probeer het over een paar minuten opnieuw.' });
     return;
   }
 
