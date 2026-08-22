@@ -280,14 +280,14 @@ button { font-family: inherit; cursor: pointer; }
 .color-families {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 .family-card {
   background: color-mix(in srgb, var(--accent, var(--terracotta)) 6%, #fff);
   border: 1px solid var(--line);
-  border-top: 5px solid var(--accent, var(--terracotta));
+  border-top: 6px solid var(--accent, var(--terracotta));
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 32px;
 }
 .family-card:nth-child(1) { --accent: #F2A6C6; }
 .family-card:nth-child(2) { --accent: #FF5A5F; }
@@ -308,8 +308,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .swatches {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 .swatches img {
   aspect-ratio: 1;
