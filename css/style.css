@@ -320,6 +320,12 @@ button { font-family: inherit; cursor: pointer; }
   display: block;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
 }
+.color-disclaimer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-top: 28px;
+}
 
 /* ---------- Kleur-swatches (zandkleuren, sand-stripe) ---------- */
 .swatch-00b4d8 { background: #00B4D8; }
