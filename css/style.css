@@ -506,6 +506,26 @@ button { font-family: inherit; cursor: pointer; }
 }
 .workshop-card h3 { font-size: 20px; margin-bottom: 12px; }
 .workshop-card p { color: var(--ink-soft); font-size: 15px; }
+.workshop-video {
+  max-width: 760px;
+  margin: 54px auto 0;
+  text-align: center;
+}
+.workshop-video h2 {
+  margin-bottom: 20px;
+}
+.workshop-video .video-frame {
+  max-height: 428px;
+}
+.workshop-video-link {
+  margin-top: 14px;
+  font-size: 14px;
+}
+.workshop-video-link a {
+  color: var(--terracotta-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .tile-examples {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
