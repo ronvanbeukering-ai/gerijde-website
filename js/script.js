@@ -452,5 +452,20 @@ if (videoFacade) {
   }, { once: true });
 }
 
+/* ---------- Facebook workshop video: laad pas na klik ---------- */
+const workshopVideoFacade = document.getElementById('workshopVideoFacade');
+if (workshopVideoFacade) {
+  workshopVideoFacade.addEventListener('click', () => {
+    const frame = document.createElement('iframe');
+    frame.src = 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fgridjedesign%2Fvideos%2F883723232056394%2F&show_text=false&width=560&height=315';
+    frame.title = 'Video van zandschilderen bij Gridje';
+    frame.setAttribute('frameborder', '0');
+    frame.setAttribute('scrolling', 'no');
+    frame.setAttribute('allowfullscreen', 'true');
+    frame.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share');
+    workshopVideoFacade.replaceWith(frame);
+  }, { once: true });
+}
+
 /* ---------- Init ---------- */
 renderCart();
