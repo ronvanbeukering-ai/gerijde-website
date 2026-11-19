@@ -551,6 +551,33 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid var(--line);
   pointer-events: none;
 }
+.workshop-details {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.workshop-details h4 {
+  font-size: 15px;
+  margin: 12px 0 8px;
+}
+.workshop-details ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.workshop-details li + li {
+  margin-top: 5px;
+}
+.workshop-small-print {
+  margin-top: 14px;
+  font-size: 13.5px !important;
+}
+.workshop-whatsapp {
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
 
 /* ---------- Lightbox ---------- */
 .lightbox {
