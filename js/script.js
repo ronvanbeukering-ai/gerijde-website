@@ -452,20 +452,5 @@ if (videoFacade) {
   }, { once: true });
 }
 
-/* ---------- Workshopvideo: lokale MP4 na klik ---------- */
-const workshopVideoFacade = document.getElementById('workshopVideoFacade');
-if (workshopVideoFacade) {
-  workshopVideoFacade.addEventListener('click', () => {
-    const video = document.createElement('video');
-    video.src = 'videos/gridje-zandschilderen.mp4';
-    video.controls = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.preload = 'metadata';
-    video.setAttribute('aria-label', 'Video van zandschilderen bij Gridje');
-    workshopVideoFacade.replaceWith(video);
-  }, { once: true });
-}
-
 /* ---------- Init ---------- */
 renderCart();
