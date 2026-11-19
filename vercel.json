@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        { "type": "host", "value": "www.gridje.nl" }
+      ],
+      "destination": "https://gridje.nl/$1",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
