@@ -65,6 +65,9 @@ async function notifyOrder(payment) {
 }
 
 module.exports = async (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+
   if (req.method !== 'POST') {
     res.status(405).end();
     return;

@@ -44,8 +44,17 @@ function isValidEmail(email) {
 }
 
 module.exports = async (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+
+  const requestOrigin = req.headers.origin;
+  if (requestOrigin && !['https://gridje.nl', 'https://www.gridje.nl'].includes(requestOrigin)) {
+    res.status(403).json({ error: 'Betalingsaanvraag komt uit een ongeldige websitebron.' });
     return;
   }
 
@@ -92,13 +101,13 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const origin = `https://${req.headers.host}`;
+  const baseUrl = `https://${req.headers.host}`;
 
   const payload = {
     amount: { currency: 'EUR', value: euro(total) },
     description: `Gridje bestelling — ${lines.join(', ')}`.slice(0, 255),
-    redirectUrl: `${origin}/bedankt.html`,
-    webhookUrl: `${origin}/api/webhook`,
+    redirectUrl: `${baseUrl}/bedankt.html`,
+    webhookUrl: `${baseUrl}/api/webhook`,
     metadata: {
       lines,
       total: euro(total),
